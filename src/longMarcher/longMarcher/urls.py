@@ -18,5 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('onlineEditor/', include('onlineEditor.urls')),
+    path('orderManager/', include('orderManager.urls')),
     path('admin/', admin.site.urls),
 ]

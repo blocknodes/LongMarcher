@@ -1,0 +1,54 @@
+{%  extends 'orderManager/main.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-5">
+		<h5>ORDERS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'createOrder'%}">Create Order</a>
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th>Phone</th>
+					<th>customer</th>
+					<th>create date</th>
+					<th>Price</th>
+				</tr>
+
+				{% for order in orders%}
+					<tr>
+						<td><a class="btn btn-sm btn-info" href="{% url 'createOrder'%}">View</a></td>
+						<td>{{order.phone}}</td>
+						<td>{{order.customer}}</td>
+						<td>{{order.create_at}}</td>
+						<td>{{order.price}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+        	<div class="pagination">
+			    <span class="step-links">
+			        {% if orders.has_previous %}
+			            <a href="?page=1">&laquo; first</a>
+			            <a href="?page={{ orders.previous_page_number }}">previous</a>
+			        {% endif %}
+			
+			        <span class="current">
+			            Page {{ orders.number }} of {{ orders.paginator.num_pages }}.
+			        </span>
+			
+			        {% if orders.has_next %}
+			            <a href="?page={{ orders.next_page_number }}">next</a>
+			            <a href="?page={{ orders.paginator.num_pages }}">last &raquo;</a>
+			        {% endif %}
+			    </span>
+			</div> 
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}
+
